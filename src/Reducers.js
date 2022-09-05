@@ -8,14 +8,10 @@ export const formSlice = createSlice({
         lastname:"",
         email:"",
         dob:" ",
-        resAddress:{
-            street1:"",
-            street2:"",
-        },
-        perAddress: {
-            street1:"",
-            street2:"",
-        },
+       street1:"",
+       street2:"",
+       street1p:"",
+       street2p:"",
         files:{
    file1:{},
    file2:{}

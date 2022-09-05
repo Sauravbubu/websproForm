@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux/es/exports";
-import  {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { adduser } from "./Reducers";
 const App = () => {
-  const {form}=useSelector((state)=>state)
+  const { form } = useSelector((state) => state);
+  console.log(form)
   const [Text1, setText1] = useState("");
   const [Text2, setText2] = useState("");
   const [type1, settype1] = useState("");
@@ -24,12 +25,12 @@ const App = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
-const dispatch =useDispatch(adduser)
+  const dispatch = useDispatch(adduser);
   console.log(errors);
   const onSubmit = (data) => {
-    data={...data,file1:FileName1,file2:FileName2}
+    data = { ...data, file1: FileName1, file2: FileName2 };
     console.log(data);
-    dispatch(adduser(data))
+    dispatch(adduser(data));
   };
 
   const handleDob = (e) => {
@@ -142,7 +143,7 @@ const dispatch =useDispatch(adduser)
                     required: " Required",
                     minLength: {
                       value: 4,
-                      message: "must be at least 4 characters long"
+                      message: "must be at least 4 characters long",
                     },
                   })}
                   onChange={(e) => setText2(e.target.value)}
@@ -198,11 +199,7 @@ const dispatch =useDispatch(adduser)
             <div className={` flex justify-around w-full gap-5 items-center `}>
               <div className="w-[25%]">
                 <p>File Name</p>
-                <input
-                  type="text"
-                  value={FileName1}
-                  className={inputstyle}
-                />
+                <input type="text" value={FileName1} className={inputstyle} />
               </div>
               <div className="w-[25%]">
                 <p>File Type</p>
@@ -222,12 +219,14 @@ const dispatch =useDispatch(adduser)
               <div className="w-[25%]">
                 <p>Select file</p>
                 <label className={inputstyle}>
-                <p className="text-md">{!type1?"select  type first":"select image"}</p>
+                  <p className="text-md">
+                    {!type1 ? "select  type first" : "select image"}
+                  </p>
 
                   <input
                     type="file"
                     className="hidden"
-   disabled={!type1 && true}
+                    disabled={!type1 && true}
                     {...register("file1")}
                     onChange={(e) => {
                       console.log(e.target.files[0]);
@@ -250,11 +249,7 @@ const dispatch =useDispatch(adduser)
             <div className={` flex justify-around w-full gap-5 items-center `}>
               <div className="w-[25%]">
                 <p>File Name</p>
-                <input
-                  type="text"
-                  value={FileName2}
-                  className={inputstyle}
-                />
+                <input type="text" value={FileName2} className={inputstyle} />
               </div>
               <div className="w-[25%]">
                 <p>File Type</p>
@@ -274,15 +269,16 @@ const dispatch =useDispatch(adduser)
               <div className="w-[25%]">
                 <p>Select file</p>
                 <label className={inputstyle}>
-                  <p className="text-md">{!type2?"select  type first":"select image"}</p>
+                  <p className="text-md">
+                    {!type2 ? "select  type first" : "select image"}
+                  </p>
 
                   <input
                     type="file"
                     className="hidden"
                     disabled={!type2 && true}
-                    
                     // ref={register}
-                    {...register("file2", { required: "Required file" })}
+                    {...register("file2")}
                     onChange={(e) => {
                       console.log(e.target.files[0].name);
 
